@@ -1,0 +1,12 @@
+# ⛔ Avoid uploading heavy dependencies
+node_modules/
+
+# 🧼 System files and editors
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# ⚙ Cypress test artifacts
+cypress/videos/
+cypress/screenshots/

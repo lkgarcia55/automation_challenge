@@ -1,0 +1,33 @@
+{
+  "invalidEmails": [
+    "invalid text",
+    "test55",
+    "test55_",
+    "email.com",
+    "email@",
+    "email@.com",
+    "@yopmail.com",
+    "test@test.c",
+    "user_test.78@test,com"
+  ],
+
+  "recoverPassword": [
+    "invalid text",
+    "test55",
+    "test55_",
+    "email.com",
+    "email@",
+    "email@.com",
+    "@yopmail.com"
+  ],
+
+   "emailNotFound": [
+    "test.2025@yopmail.com.co",
+    "test55@test.test.com",
+    "test55_lk@yopmail.es",
+    "lk.email@test2025.com"
+  ]
+
+
+  
+}

@@ -1,0 +1,14 @@
+{
+  "invalidNames": [
+    "1234567890",
+    "!#$%&/()=??¡¨[*",
+    "test55_",
+    "email.com",
+    "email@",
+    "email@.com",
+    "AwSeDrFtGyHuJ",
+    "Días , ‡Vergüenza"
+
+
+  ]  
+}

@@ -1,0 +1,3 @@
+[2025-07-10T03:38:00.558Z] STARTING TEST FILE: 1_main_nav.cy.js
+[2025-07-10T03:38:02.113Z] Starting login test
+[2025-07-10T03:38:03.624Z] FINISHED TEST FILE: 1_main_nav.cy.js - Status: PASSED

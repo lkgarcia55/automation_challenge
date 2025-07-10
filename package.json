@@ -1,0 +1,29 @@
+{
+  "name": "automation-challenge-lab",
+  "version": "1.0.0",
+  "description": "Automated user registration testing with Cypress",
+  "main": "index.js",
+  "scripts": {
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run",
+    "test": "npm run cypress:run",
+    "test:ci": "cypress run --browser chrome --headless",
+    "test:logs": "npx cypress run --spec cypress/e2e/**/*.cy.js",
+    "test:nav": "npx cypress run --spec cypress/e2e/Completed/1_main_nav.cy.js",
+    "test:register": "npx cypress run --spec cypress/e2e/Completed/2_register_completed.cy.js",
+    "test:login": "npx cypress run --spec cypress/e2e/Completed/3_login_completed.cy.js",
+    "test:add": "npx cypress run --spec cypress/e2e/Completed/4_add_items.cy.js"
+  },
+  "keywords": [
+    "cypress",
+    "e2e",
+    "register",
+    "testing"
+  ],
+  "author": "Katherine García",
+  "license": "MIT",
+  "devDependencies": {
+    "@faker-js/faker": "^8.4.1",
+    "cypress": "^14.3.3"
+  }
+}
