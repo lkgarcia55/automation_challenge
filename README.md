@@ -1,11 +1,15 @@
-🚀 End-to-End Testing "[Laboratorio de Testing](https://www.laboratoriodetesting.com)" Project with Cypress
+🚀 End-to-End Testing "[Laboratorio de Testing](https://www.laboratoriodetesting.com)" using Cypress
 
 🎯 Goal
 
+Automate core user journeys to detect regressions and bugs in critical areas like registration, login, and checkout.  
+This project aims to ensure that **frequent UI changes** don’t break the main functionality.
+
 ✅ Context Analysis:
 
-* The site is under development with bugs reported in critical features like registration and checkout.
-* Features are changing often, so tests must be repeatable and fast.
+* The site is actively under development.
+* Bugs have been reported in critical paths like **registration** and **checkout**.
+* UI and behavior may change often → tests must be **repeatable, fast, and resilient**.
 
 ✅ What to automate first?
 Focus on end-to-end tests for:
@@ -24,9 +28,9 @@ Focus on end-to-end tests for:
 
 ✅ Test Types:
 
-* Smoke tests: Confirm basic functionality.
-* Regression tests: Check that existing functionality still works after changes.
-* Happy path: Test the ideal user flow.
+* Smoke tests: Validate basic application health.
+* Regression tests: Ensure no new changes break existing features.
+* Happy path: Simulate successful user flows.
 
 -------------------------------------------------------------------------------------------------
 ✅ Prerequisites
@@ -56,7 +60,7 @@ Cypress for the first time to create the project structure:
 
 -----------------------------------------------------------------------------
 
-✅ Installing Plugins
+✅ Installing Plugins - Dynamic Data with Faker
 
 Install @faker-js/faker --> https://www.npmjs.com/package/@faker-js/faker (Dynamic Test Data)
 
@@ -91,26 +95,46 @@ Fixtures are static JSON files that contain test data used across multiple test 
 | `emails.json`                | Contains invalid email formats for input validation tests          |
 | `names.json`                 | Contains invalid name values to trigger name validation errors     |
 | `passwords.json`             | Contains weak or invalid passwords for form validation             |
-| `registered_user.json`       | Stores an already registered user for "user exists" test scenarios |
+| `registered_user.json`       | Pre-registered user for login/duplicate email scenarios            |
 | `user_forgets_password.json` | Provides an email for password recovery test using the modal flow  |
+| `checkout_Info.json`         | Full data set for checkout testing (user1, user2 scenarios)        |
 
 -----------------------------------------------------------------------------
+
+
+✅ Custom Commands
+
+
+Custom Cypress commands live in cypress/support/commands.js and include:
+
+| Command                          | Description                                      |
+| -------------------------------- | ------------------------------------------------ |
+| `cy.loginWithFixture()`          | Logs in using fixture-based credentials          |
+| `cy.addProductToCart()`          | Adds a product, changes quantity, and opens cart |
+| `cy.verifyCartTotalPrice()`      | Verifies total cart price based on quantity      |
+| `cy.fillCheckoutFormWithUser1()` | Fills checkout form with fixture `user1`         |
+| `cy.fillCheckoutFormWithUser2()` | Fills checkout form with fixture `user2`         |
+
+
+-----------------------------------------------------------------------------
+
 
 ✅ Available Test Commands
 
 The following npm scripts are defined in package.json for running tests easily:
 
-| Command                 | Description                                                         |
-| ----------------------- | ------------------------------------------------------------------- |
-| `npm run cypress:open`  | Opens Cypress in interactive GUI mode                               |
-| `npm run cypress:run`   | Runs all tests in headless mode (default CLI execution)             |
-| `npm run test`          | Alias for `cypress:run`                                             |
-| `npm run test:ci`       | Runs tests using Chrome headless (ideal for CI pipelines)           |
-| `npm run test:logs`     | Runs all tests and logs each step to terminal and a log file        |
-| `npm run test:nav`      | Runs only the main navigation test (`1_main_nav.cy.js`)             |
-| `npm run test:register` | Runs only the registration flow test (`2_register_completed.cy.js`) |
-| `npm run test:login`    | Runs only the login flow test (`3_login_completed.cy.js`)           |
-| `npm run test:add`      | Runs only the add items test (`4_add_items.cy.js`)                  |
+| Command                 | Description                                                    |
+| ----------------------- | -------------------------------------------------------------- |
+| `npm run cypress:open`  | Launches Cypress UI                                            |
+| `npm run cypress:run`   | Runs all tests in headless mode                                |
+| `npm run test`          | Alias for `cypress:run`                                        |
+| `npm run test:ci`       | Runs tests using Chrome headless (CI-friendly)                 |
+| `npm run test:logs`     | Runs all tests and saves logs to `cypress/logs/`               |
+| `npm run test:nav`      | Runs only the navigation test (`1_main_navigation_flow.cy.js`) |
+| `npm run test:register` | Runs the registration flow (`2_registration_flow.cy.js`)       |
+| `npm run test:login`    | Runs login scenarios (`3_login_flow.cy.js`)                    |
+| `npm run test:add`      | Tests product add-to-cart flow (`4_add_items_flow.cy.js`)      |
+| `npm run test:checkout` | Runs checkout flow (`5_checkout_flow.cy.js`)                   |
 
 📂 Logs generated by cy.task('logMessage', '...') are saved in:
 
@@ -123,17 +147,27 @@ cypress/logs/test-log-[timestamp].txt
 📁 Project Structure (Simplified)
 
 cypress/
-├── e2e/                     # Test files (e.g., register.cy.js)
-│   ├── Completed/
-│   └── Original/
-├── fixtures/                # Static test data
+├── e2e/
+│   ├── 1_main_navigation_flow.cy.js
+│   ├── 2_registration_flow.cy.js
+│   ├── 3_login_flow.cy.js
+│   ├── 4_add_items_flow.cy.js
+│   ├── 5_checkout_flow.cy.js
+│   └── 6_complete_purchase_flow.cy.js
+│
+├── fixtures/
 │   ├── emails.json
 │   ├── names.json
 │   ├── passwords.json
 │   ├── registered_user.json
-│   └── user_forgets_password.json
-├── logs/                    # Custom log output from test runs
+│   ├── user_forgets_password.json
+│   └── checkout_Info.json
+│
+├── logs/                      # Custom logs from cy.task('logMessage', ...)
+│
 ├── support/
-│   └── e2e.js               # Global setup (if needed)
-cypress.config.js            # Cypress configuration
-package.json                 # Project dependencies and scripts
+│   ├── commands.js            # Custom Cypress commands
+│   └── e2e.js                 # Global config (if used)
+
+cypress.config.js              # Cypress config file
+package.json                   # Project dependencies & test scripts
