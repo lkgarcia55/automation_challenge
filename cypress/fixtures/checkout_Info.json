@@ -1,0 +1,24 @@
+{
+  "user1": {
+    "email": "huge.test@gmail.com",
+    "name": "Juan David",
+    "lastName": "Contreras García",
+    "address": "Calle 63B # 78-25",
+    "country": "Colombia",
+    "cardName": "Juan D Contreras G",
+    "creditCard": "4301822375925071",
+    "expDate": "2029-09",
+    "cvv": "637"
+  },
+  "user2": {
+    "email": "ana.lopez@example.com",
+    "name": "Ana",
+    "lastName": "López",
+    "address": "Carrera 75Bis # 32-09",
+    "country": "España",
+    "cardName": "Ana Lopez",
+    "creditCard": "5201911132320001",
+    "expDate": "2026-05",
+    "cvv": "999"
+  }
+}
