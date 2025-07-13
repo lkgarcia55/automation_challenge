@@ -146,7 +146,7 @@ cypress/logs/test-log-[timestamp].txt
 
 📁 Project Structure (Simplified)
 
-
+```bash
 cypress/
 ├── e2e/
 │ ├── 1_main_navigation_flow.cy.js
@@ -172,3 +172,4 @@ cypress/
 
 cypress.config.js # Cypress config file
 package.json # Project dependencies & test scripts
+```
