@@ -146,28 +146,29 @@ cypress/logs/test-log-[timestamp].txt
 
 📁 Project Structure (Simplified)
 
+
 cypress/
 ├── e2e/
-│   ├── 1_main_navigation_flow.cy.js
-│   ├── 2_registration_flow.cy.js
-│   ├── 3_login_flow.cy.js
-│   ├── 4_add_items_flow.cy.js
-│   ├── 5_checkout_flow.cy.js
-│   └── 6_complete_purchase_flow.cy.js
+│ ├── 1_main_navigation_flow.cy.js
+│ ├── 2_registration_flow.cy.js
+│ ├── 3_login_flow.cy.js
+│ ├── 4_add_items_flow.cy.js
+│ ├── 5_checkout_flow.cy.js
+│ └── 6_complete_purchase_flow.cy.js
 │
 ├── fixtures/
-│   ├── emails.json
-│   ├── names.json
-│   ├── passwords.json
-│   ├── registered_user.json
-│   ├── user_forgets_password.json
-│   └── checkout_Info.json
+│ ├── emails.json
+│ ├── names.json
+│ ├── passwords.json
+│ ├── registered_user.json
+│ ├── user_forgets_password.json
+│ └── checkout_Info.json
 │
-├── logs/                      # Custom logs from cy.task('logMessage', ...)
+├── logs/ # Custom logs from cy.task('logMessage', ...)
 │
 ├── support/
-│   ├── commands.js            # Custom Cypress commands
-│   └── e2e.js                 # Global config (if used)
+│ ├── commands.js # Custom Cypress commands
+│ └── e2e.js # Global config (if used)
 
-cypress.config.js              # Cypress config file
-package.json                   # Project dependencies & test scripts
+cypress.config.js # Cypress config file
+package.json # Project dependencies & test scripts
