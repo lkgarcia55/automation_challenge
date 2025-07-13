@@ -1,5 +1,6 @@
 describe('Login flow', () => {
 
+  // Logs the start of the test suite
   it('Should log in successfully', () => {
     cy.task('logMessage', 'Login flow');
   });
@@ -9,28 +10,29 @@ describe('Login flow', () => {
     cy.visit('/auth/login');
   });
 
-  // -------------------- TITLE --------------------
+  // ─────────────────────────────────────────────────────────────
+  // TITLE
+  // ─────────────────────────────────────────────────────────────
 
-  // Verifies the page title is visible and correct
   it('Title of the page', () => {
     cy.get('h1')
       .should('have.text', 'Inicia Sesión')
       .and('be.visible');
   });
 
-  // -------------------- EMAIL FIELD --------------------
+  // ─────────────────────────────────────────────────────────────
+  // EMAIL FIELD
+  // ─────────────────────────────────────────────────────────────
 
-  // Verifies that the email field is visible
   it('Email field - visible', () => {
     cy.get('input[name="email"]').should('be.visible');
   });
 
-  // Verifies that the email field has a max length  
   it('Email field - character limit', () => {
     cy.get('input[name="email"]')
       .should('have.attr', 'maxlength', '90000');
   });
-
+  
   // Verifies error messages for invalid emails using fixture
   it('Email field - error for invalid emails', () => {
     cy.fixture('emails').then((data) => {
@@ -47,7 +49,6 @@ describe('Login flow', () => {
     });
   });
 
-  // Verifies error when the email field is cleared
   it('Email field - error when email is cleared', () => {
     cy.get('input[name="email"]')
       .type('test@test')
@@ -57,14 +58,14 @@ describe('Login flow', () => {
       .and('have.text', 'Este campo es requerido');
   });
 
-  // -------------------- PASSWORD FIELD --------------------
+  // ─────────────────────────────────────────────────────────────
+  // PASSWORD FIELD
+  // ─────────────────────────────────────────────────────────────
 
-  // Verifies that the password field is visible
   it('Password field - visible', () => {
     cy.get('input[name="password"]').should('be.visible');
   });
 
-  // Verifies that the password field has a max length
   it('Password field - character limit', () => {
     cy.get('input[name="password"]')
       .should('have.attr', 'maxlength', '90000');
@@ -86,7 +87,6 @@ describe('Login flow', () => {
     });
   });
 
-  // Verifies error when email field is cleared after typing
   it('Email - error when email field is emptied', () => {
     cy.get('input[name="email"]')
       .type('test')
@@ -98,7 +98,6 @@ describe('Login flow', () => {
       .and('have.text', 'Este campo es requerido');
   });
 
-  // Verifies error when password field is cleared after typing
   it('Password - error when password field is emptied', () => {
     cy.get('input[name="password"]')
       .type('test')
@@ -110,12 +109,13 @@ describe('Login flow', () => {
       .and('have.text', 'Este campo es requerido');
   });
 
-  // -------------------- REGISTER LINK --------------------
+  // ─────────────────────────────────────────────────────────────
+  // REGISTER LINK
+  // ─────────────────────────────────────────────────────────────
 
-  // Verifies the link for users who are not registered
   it('Option for users who are not registered', () => {
     cy.contains('¿No tienes una cuenta?')
-    .should('be.visible');
+      .should('be.visible');
 
     cy.contains('a', 'Crea una')
       .should('exist')
@@ -123,9 +123,10 @@ describe('Login flow', () => {
       .click();
   });
 
-  // -------------------- PASSWORD RECOVERY --------------------
+  // ─────────────────────────────────────────────────────────────
+  // PASSWORD RECOVERY
+  // ─────────────────────────────────────────────────────────────
 
-  // Verifies the modal opens correctly for password recovery
   it('Should open the password recovery modal', () => {
     cy.get('.mt-4.font-semibold')
       .should('have.text', '¿Olvidaste tu contraseña?')
@@ -147,7 +148,7 @@ describe('Login flow', () => {
     cy.get('input[name="email"]').should('be.visible');
   });
 
-  // Validates email errors in the password recovery popup
+  // Validates email errors in the password recovery popup  
   it('Should show error for invalid and non-existing emails in recovery flow', () => {
     cy.get('.mt-4.font-semibold')
       .should('have.text', '¿Olvidaste tu contraseña?')
@@ -204,8 +205,7 @@ describe('Login flow', () => {
         .clear()
         .type(user.email);
 
-      cy.get('.swal2-confirm')
-        .click();
+      cy.get('.swal2-confirm').click();
 
       cy.get('h2')
         .should('be.visible')
@@ -217,7 +217,9 @@ describe('Login flow', () => {
     });
   });
 
-  // -------------------- COMPLETE SCENARIO --------------------
+  // ─────────────────────────────────────────────────────────────
+  // COMPLETE SCENARIO
+  // ─────────────────────────────────────────────────────────────
 
   // Logs in a registered user using fixture data
   it('Registered user - using fixture', () => {

@@ -1,15 +1,18 @@
 describe('Main navigation', () => {
 
+  // Logs the start of the test suite
   it('Should log in successfully', () => {
     cy.task('logMessage', 'Main navigation');
   });
 
-  // ✅ Before each test, visit the homepage
+  // Visit the page before each test
   beforeEach(() => {
     cy.visit('/');
   });
 
-  // -------------------- REGISTER LINK --------------------
+  // ─────────────────────────────────────────────────────────────
+  // REGISTER LINK
+  // ─────────────────────────────────────────────────────────────
 
   // Verifies that the "Registrarse" link exists, is visible, navigates correctly,
   // and that the registration page loads with the correct title
@@ -29,7 +32,9 @@ describe('Main navigation', () => {
       .should('be.visible');
   });
 
-  // -------------------- LOGIN LINK --------------------
+  // ─────────────────────────────────────────────────────────────
+  // LOGIN LINK
+  // ─────────────────────────────────────────────────────────────
 
   // Verifies that the "Acceder" link exists, is visible, navigates correctly,
   // and that the login page loads with the correct title

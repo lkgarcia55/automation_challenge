@@ -10,10 +10,13 @@ describe('Checkout flow', () => {
     cy.visit('/auth/login');
     cy.loginWithFixture('registered_user');
     cy.url().should('not.include', '/auth/login');
+    cy.addBandasElasticasToCart();
     cy.visit('/checkout');
   });
 
-  // ───────────────────── PAGE STRUCTURE ─────────────────────
+  // ─────────────────────────────────────────────────────────────
+  // PAGE STRUCTURE
+  // ─────────────────────────────────────────────────────────────
 
   it('Title of the page', () => {
     cy.get('h1')
@@ -39,7 +42,9 @@ describe('Checkout flow', () => {
       .and('be.visible');
   });
 
-  // ───────────────────── NAME FIELD ─────────────────────
+  // ─────────────────────────────────────────────────────────────
+  // NAME FIELD
+  // ─────────────────────────────────────────────────────────────
 
   it('Name field - visible', () => {
     cy.get('input[name="name"]').should('be.visible');
@@ -64,7 +69,9 @@ describe('Checkout flow', () => {
       .and('have.text', 'Este campo es requerido');
   });
 
-  // ───────────────────── LASTNAME FIELD ─────────────────────
+  // ─────────────────────────────────────────────────────────────
+  // LASTNAME FIELD
+  // ─────────────────────────────────────────────────────────────
 
   it('Lastname field - visible', () => {
     cy.get('input[name="lastname"]').should('be.visible');
@@ -89,7 +96,9 @@ describe('Checkout flow', () => {
       .and('have.text', 'Este campo es requerido');
   });
 
-  // ───────────────────── EMAIL FIELD ─────────────────────
+  // ─────────────────────────────────────────────────────────────
+  // EMAIL FIELD
+  // ─────────────────────────────────────────────────────────────
 
   it('Email field - visible', () => {
     cy.get('input[name="email"]').should('be.visible');
@@ -114,7 +123,9 @@ describe('Checkout flow', () => {
       .and('have.text', 'El correo no es válido');
   });
 
-  // ───────────────────── ADDRESS FIELD ─────────────────────
+  // ─────────────────────────────────────────────────────────────
+  // ADDRESS FIELD
+  // ─────────────────────────────────────────────────────────────
 
   it('Address field - visible', () => {
     cy.get('input[name="address"]').should('be.visible');
@@ -131,7 +142,9 @@ describe('Checkout flow', () => {
       .and('have.text', 'Este campo es requerido');
   });
 
-  // ───────────────────── COUNTRY FIELD ─────────────────────
+  // ─────────────────────────────────────────────────────────────
+  // COUNTRY FIELD
+  // ─────────────────────────────────────────────────────────────
 
   it('Country dropdown - visible', () => {
     cy.get('select[name="country"]').should('be.visible');
@@ -141,7 +154,9 @@ describe('Checkout flow', () => {
     cy.get('select[name="country"]').select('Chile').should('have.value', 'Chile');
   });
 
-  // ───────────────────── CREDIT CARD NAME FIELD ─────────────────────
+  // ─────────────────────────────────────────────────────────────
+  // CREDIT CARD NAME FIELD
+  // ─────────────────────────────────────────────────────────────
 
   it('Credit card name - visible', () => {
     cy.get('input[name="nameHolder"]').should('be.visible');
@@ -166,7 +181,9 @@ describe('Checkout flow', () => {
       .and('have.text', 'Este campo es requerido');
   });
 
-  // ───────────────────── CREDIT CARD NUMBER FIELD ─────────────────────
+  // ─────────────────────────────────────────────────────────────
+  // CREDIT CARD NUMBER FIELD
+  // ─────────────────────────────────────────────────────────────
 
   it('Credit card number - visible', () => {
     cy.get('input[name="cardNumber"]').should('be.visible');
@@ -184,7 +201,9 @@ describe('Checkout flow', () => {
     });
   });
 
-  // ───────────────────── EXPIRATION DATE FIELD ─────────────────────
+  // ─────────────────────────────────────────────────────────────
+  // EXPIRATION DATE FIELD
+  // ─────────────────────────────────────────────────────────────
 
   it('Credit card expiration date - visible', () => {
     cy.get('input[name="expiryDate"]').should('be.visible');
@@ -198,7 +217,9 @@ describe('Checkout flow', () => {
     });
   });
 
-  // ───────────────────── SECURITY CODE FIELD ─────────────────────
+  // ─────────────────────────────────────────────────────────────
+  // SECURITY CODE FIELD
+  // ─────────────────────────────────────────────────────────────
 
   it('Credit card security code - visible', () => {
     cy.get('input[name="securityCode"]').should('be.visible');
@@ -223,22 +244,33 @@ describe('Checkout flow', () => {
       .and('have.text', 'El código debe tener 3 dígitos');
   });
 
-  // ───────────────────── FULL FLOW WITH INCORRECT DATA ─────────────────────
+  // ─────────────────────────────────────────────────────────────
+  // FULL FLOW WITH INCORRECT DATA
+  // ─────────────────────────────────────────────────────────────
 
-  it('Full flow with incorrect data - validate error message when deleting field content', () => {  
-    cy.fixture('checkout_Info').then((data) => {
-      const user = data.user2;
+  it('Full flow with incorrect data - validate error message when deleting field content', () => {
+    cy.fillCheckoutFormWithUser2();
 
-      cy.get('input[name="name"]').type(user.name);
-      cy.get('input[name="lastname"]').type(user.lastName);
-      cy.get('input[name="email"]').type(user.email);
-      cy.get('input[name="address"]').type(user.address);
-      cy.get('select[name="country"]').select(user.country);
-      cy.get('input[name="nameHolder"]').type(user.cardName);
-      cy.get('input[name="cardNumber"]').type(user.creditCard);
-      cy.get('input[name="expiryDate"]').type(user.expDate);
-      cy.get('input[name="securityCode"]').type(user.cvv).blur();
-    });
+    cy.get('.my-5 > .bg-primaryColor')
+      .should('have.text', 'Completar Pago')
+      .should('be.visible')
+      .click();
+
+    cy.get('h2')
+      .should('have.text', 'Error al procesar el pago')
+      .should('be.visible');
+
+    cy.get('.swal2-html-container')
+      .should('have.text', 'Tarjeta inválida')
+      .should('be.visible');
+
+    cy.get('.swal2-confirm')
+      .should('have.text', 'Reintentar')
+      .should('be.visible')
+      .click();
+
+    cy.get('.swal2-popup')
+      .should('not.exist');
   });
 
 });

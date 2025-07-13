@@ -1,6 +1,0 @@
-[2025-07-10T03:43:06.510Z] Login flow
-[2025-07-10T03:54:56.007Z] Main navigation
-[2025-07-10T03:55:04.574Z] Registration flow
-[2025-07-10T03:55:32.790Z] Login flow
-[2025-07-10T03:57:53.702Z] Add items to the card
-[2025-07-10T04:08:43.999Z] Add items to the card
