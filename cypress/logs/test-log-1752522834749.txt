@@ -1,0 +1,5 @@
+[2025-07-14T19:54:12.220Z] Main navigation
+[2025-07-14T19:54:29.635Z] Registration flow
+[2025-07-14T19:55:04.300Z] Login flow
+[2025-07-14T19:55:37.035Z] Checkout flow
+[2025-07-14T19:58:04.890Z] Add items to the cart

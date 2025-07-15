@@ -1,5 +1,7 @@
 🚀 End-to-End Testing "[Laboratorio de Testing](https://www.laboratoriodetesting.com)" using Cypress
 
+✅ Automation Strategy - Testing Lab --> https://docs.google.com/document/d/1jGtKpTaNbyWgokbhky8NtEiYJZ6OR9I_ejHO5aKPOfc/edit?tab=t.0
+
 🎯 Goal
 
 Automate core user journeys to detect regressions and bugs in critical areas like registration, login, and checkout.  
